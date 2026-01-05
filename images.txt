@@ -1,0 +1,9 @@
+# 镜像同步列表
+# 格式: 源镜像:标签
+# 每行一个镜像，# 开头的行为注释
+# 示例:
+# nginx:latest
+# redis:7-alpine
+# mysql:8.0
+
+amazoncorretto:8u382-alpine3.18-jre
