@@ -69,8 +69,11 @@ jobs:
             # 将 / 替换为 - 以符合 GHCR 命名规范
             SAFE_IMAGE_NAME=$(echo "$IMAGE_NAME" | tr '/' '-')
             
+            # 将仓库所有者转换为小写（GHCR 要求必须小写）
+            OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            
             # 目标镜像地址
-            TARGET_IMAGE="${{ env.REGISTRY }}/${{ github.repository_owner }}/${SAFE_IMAGE_NAME}:${IMAGE_TAG}"
+            TARGET_IMAGE="${{ env.REGISTRY }}/${OWNER_LOWER}/${SAFE_IMAGE_NAME}:${IMAGE_TAG}"
             
             echo ""
             echo "🔄 正在同步: $SOURCE_IMAGE"
@@ -143,7 +146,8 @@ jobs:
             fi
             
             SAFE_IMAGE_NAME=$(echo "$IMAGE_NAME" | tr '/' '-')
-            TARGET_IMAGE="${{ env.REGISTRY }}/${{ github.repository_owner }}/${SAFE_IMAGE_NAME}:${IMAGE_TAG}"
+            OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            TARGET_IMAGE="${{ env.REGISTRY }}/${OWNER_LOWER}/${SAFE_IMAGE_NAME}:${IMAGE_TAG}"
             
             echo "| \`$SOURCE_IMAGE\` | \`$TARGET_IMAGE\` |" >> $GITHUB_STEP_SUMMARY
           done < "images.txt"
