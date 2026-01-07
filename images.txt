@@ -7,3 +7,4 @@
 # mysql:8.0
 
 amazoncorretto:8u382-alpine3.18-jre
+fnsys/dockhand
