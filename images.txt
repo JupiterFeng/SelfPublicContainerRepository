@@ -8,3 +8,4 @@
 
 amazoncorretto:8u382-alpine3.18-jre
 fnsys/dockhand
+vulhub/kkfileview:4.3.0
